@@ -2,6 +2,7 @@ package com.mytaxi.android_demo.activities;
 
 import android.app.Instrumentation;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import com.mytaxi.android_demo.R;
@@ -18,6 +19,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import javax.inject.Inject;
+
+import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -113,7 +116,7 @@ public class MainActivityTest {
 
         launchActivity();
 
-        onView(withId(R.id.textSearch)).perform(typeText("sa"));
+        onView(withId(R.id.textSearch)).perform(typeText("sa"), ViewActions.closeSoftKeyboard());
 
         onView(withText("Sarah Friedrich"))
                 .inRoot(
